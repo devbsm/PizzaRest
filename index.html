@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top 10 Pizza Recipes</title>
+    <style>
+      :root {
+        --primary: #ff6b6b;
+        --secondary: #4ecdc4;
+        --bg: #f8f9fa;
+        --text: #212529;
+        --card-bg: #ffffff;
+      }
+
+      [data-theme="dark"] {
+        --bg: #2d3436;
+        --text: #f8f9fa;
+        --card-bg: #3b4142;
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: var(--bg);
+        color: var(--text);
+        transition: all 0.3s ease;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.05);
+      }
+
+      h1 {
+        text-align: center;
+        color: var(--primary);
+        margin-bottom: 40px;
+      }
+
+      .pizza-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .pizza-card {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .pizza-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .pizza-card h2 {
+        color: var(--secondary);
+        margin-top: 0;
+      }
+
+      @media (max-width: 768px) {
+        .pizza-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+      🌓 Toggle Theme
+    </button>
+    <div class="container">
+      <h1>Top 10 Pizza Recipes</h1>
+
+      <div class="pizza-grid">
+        <div class="pizza-card">
+          <h2>1. Margherita Pizza</h2>
+          <p>
+            Classic Italian pizza with tomato sauce, mozzarella cheese, and
+            fresh basil.
+          </p>
+        </div>
+        <div class="pizza-card">
+          <h2>2. Pepperoni Pizza</h2>
+          <p>
+            Topped with tomato sauce, mozzarella, and plenty of spicy pepperoni
+            slices.
+          </p>
+        </div>
+        <div class="pizza-card">
+          <h2>3. BBQ Chicken Pizza</h2>
+          <p>Grilled chicken, BBQ sauce, red onions, and mozzarella cheese.</p>
+        </div>
+        <div class="pizza-card">
+          <h2>4. Hawaiian Pizza</h2>
+          <p>
+            A sweet and savory combo of ham, pineapple, and mozzarella cheese.
+          </p>
+        </div>
+        <div class="pizza-card">
+          <h2>5. Veggie Supreme Pizza</h2>
+          <p>
+            Loaded with bell peppers, onions, mushrooms, olives, and mozzarella.
+          </p>
+        </div>
+        <div class="pizza-card">
+          <h2>6. Meat Lovers Pizza</h2>
+          <p>A hearty mix of pepperoni, sausage, bacon, ham, and mozzarella.</p>
+        </div>
+        <div class="pizza-card">
+          <h2>7. Four Cheese Pizza (Quattro Formaggi)</h2>
+          <p>
+            A blend of mozzarella, gorgonzola, parmesan, and fontina cheeses.
+          </p>
+        </div>
+        <div class="pizza-card">
+          <h2>8. Buffalo Chicken Pizza</h2>
+          <p>
+            Spicy buffalo sauce, grilled chicken, red onions, and blue cheese
+            crumbles.
+          </p>
+        </div>
+        <div class="pizza-card">
+          <h2>9. White Pizza (Pizza Bianca)</h2>
+          <p>
+            Ricotta, mozzarella, garlic, and olive oil, without tomato sauce.
+          </p>
+        </div>
+        <div class="pizza-card">
+          <h2>10. Mushroom Truffle Pizza</h2>
+          <p>
+            Sautéed mushrooms, mozzarella, parmesan, and a drizzle of truffle
+            oil.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleTheme() {
+        document.body.dataset.theme =
+          document.body.dataset.theme === "dark" ? "light" : "dark";
+        // Save user preference
+        localStorage.setItem("theme", document.body.dataset.theme);
+      }
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        document.body.dataset.theme = savedTheme;
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.body.dataset.theme = "dark";
+      }
+    </script>
+  </body>
+</html>
